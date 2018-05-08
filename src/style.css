@@ -1,0 +1,21 @@
+
+
+
+
+#divstyle{
+border: 1px solid black;
+width: 30%;
+padding: 5px;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#categories {
+    border-right: 2px solid lightgray;
+}
