@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "react-router-dom";
 import Itemtable from './Itemtable';
 
+import ItemTableWithFilter from './itemTableWithFilter'
+
 
 class App extends Component {
   constructor(props) {
@@ -15,18 +17,10 @@ class App extends Component {
 
   };
 
-
-
-
   handleClick(event) {
     event.preventDefault();
-    this.setState({ resultList: <Itemtable /> })
+    this.setState({ resultList: <ItemTableWithFilter /> })
   }
-
-
-
-
-
 
   render() {
 
@@ -42,11 +36,11 @@ class App extends Component {
 
                   <button data-toggle="collapse" data-target="#demo">Categories</button>
 
-                  <div id="demo" class="collapse">
+                  <div id="demo" className="collapse">
                     <ul>
                       <li>
                         <button data-toggle="collapse" data-target="#transport-list">Transport</button>
-                        <div id="transport-list" class="collapse">
+                        <div id="transport-list" className="collapse">
                           <ul>
 
                             <li><a href="">Cars</a></li>
@@ -61,7 +55,7 @@ class App extends Component {
 
                       <li>
                         <button data-toggle="collapse" data-target="#living-list">Living</button>
-                        <div id="living-list" class="collapse">
+                        <div id="living-list" className="collapse">
                           <ul>
                             <li><a href="">Couches</a></li>
                             <li><a href="">Tables</a></li>
@@ -77,7 +71,7 @@ class App extends Component {
 
                       <li>
                         <button data-toggle="collapse" data-target="#services-list">Services</button>
-                        <div id="services-list" class="collapse">
+                        <div id="services-list" className="collapse">
                           <ul>
                             <li><a href="">Driving</a></li>
                             <li><a href="">Cooking</a></li>
@@ -92,7 +86,7 @@ class App extends Component {
 
                       <li>
                         <button data-toggle="collapse" data-target="#electronics-list">Electronics</button>
-                        <div id="electronics-list" class="collapse">
+                        <div id="electronics-list" className="collapse">
                           <ul>
                             <li><a href="">Lamps</a></li>
                             <li><a href="">Ovens</a></li>
@@ -109,11 +103,10 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-10">
+              <div className="col-sm-10">
 
-                <p>{this.state.resultList}</p>
-
-
+                <div>{this.state.resultList}</div>
+                
               </div>
             </div>
           </div>
