@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "react-router-dom";
 import Itemtable from './Itemtable';
+import Itemform from './Itemform';
 
 import ItemTableWithFilter from './itemTableWithFilter'
 
@@ -23,12 +24,17 @@ class App extends Component {
   }
 
   render() {
-
     return (
+
       <Router>
         <Switch>
+        <Route path="/registerItem" render={() => <div><Itemform /></div> }/>
+
+
           <div className="container-fluid">
             <h1>Lejeland</h1>
+            <NavLink exact to="/registerItem">New item</NavLink>
+           
             <hr/>
             <div className="row">
               <div className="col-sm-2" id="categories">

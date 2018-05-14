@@ -19,3 +19,11 @@ ul {
 #categories {
     border-right: 2px solid lightgray;
 }
+
+#registerItem{
+    width: 200px;
+    background: rgb(221, 219, 223);
+    padding: 4px;
+    display: block;
+    margin: 0 auto;
+}
