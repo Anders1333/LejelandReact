@@ -44,6 +44,7 @@ class Itemform extends Component {
     }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.handleChange.bind(this);
     }
 
    
@@ -53,8 +54,8 @@ class Itemform extends Component {
 
 
 
-    onChange(value) {
-        this.setState({ categoryChoice: value });
+    onChange(event) {
+        this.setState({ categoryChoice: event.value });
 
     }
 

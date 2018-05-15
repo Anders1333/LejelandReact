@@ -6,11 +6,9 @@ export default class FilterTableWork extends Component {
         super()
         this.state = {
             items: [],
+          
 
-            initialItems: [
-                { itemID: 1, title: "Tony Hawks old skateboard", desc: "A pristine skateboard from my good friend Tony!", priceDeposit: "$100", priceMonthly: "$50", location: "Chicago", available: "yes" },
-                { itemID: 2, title: "Old Skateboard", desc: "My old skateboard", priceDeposit: "$30", priceMonthly: "$10", location: "L.A", available: "no" }
-            ]
+         
 
 
         }

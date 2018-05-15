@@ -3,36 +3,50 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 
 
-var objectArray = {
-    "skating": [
-        { itemID: 1, title: "Tony Hawks old skateboard", desc: "A pristine skateboard from my good friend Tony!", priceDeposit: "$100", priceMonthly: "$50", location: "Chicago", available: "yes" },
-        { itemID: 2, title: "New Skateboard", desc: "My brand new skateboard", priceDeposit: "$30", priceMonthly: "$20", location: "L.A", available: "yes" },
-    ]
-}
 
 class Itemtable extends Component {
 
     constructor(props) {
         super(props);
+       
         this.state = {
             dataFromServer: [],
-            species: []
-        }
+            facade: this.props.facade,
+            category: this.props.category
+            }
+
+            
+   
+        
         this.head = this.head.bind(this);
         this.body = this.body.bind(this);
         this.state = {q : null};
     }
 
+   
+    
+    componentDidMount(){
+      
+        this.props.facade.fetchItemsFromCategory('Bikes')
+        .then(res=> {
+            this.setState({dataFromServer: res.results})})
+        .catch(err => console.log(err));
+
+   
+        
+    }
+
+
     head() {
         return (
+           
             <thead>
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
-                    <th>Deopsit</th>
-                    <th>Monthly Payment</th>
+                    <th>Payment</th>
                     <th>Location</th>
-                    <th>Available</th>
+                    <th>Status</th>
                 </tr>
 
             </thead>
@@ -40,13 +54,17 @@ class Itemtable extends Component {
     }
 
     body() {
-        const map1 = objectArray.skating.map((data, index) => {
+        console.log(this.state.dataFromServer)
+        if(this.state.dataFromServer===undefined){
+            return null;
+        }
+        const map1 = this.state.dataFromServer.map((data, index) => {
+
             return (
                 <tr key={index}>
                     <td>{data.title}</td>
-                    <td>{data.desc}</td>
-                    <td>{data.priceDeposit}</td>
-                    <td>{data.priceMonthly}</td>
+                    <td>{data.description}</td>
+                    <td>{data.payment}</td>
                     <td>{data.location}</td>
                     <td>{data.available}</td>
                 </tr>

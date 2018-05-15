@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "react-router-dom";
 import Itemtable from './Itemtable';
 import Itemform from './Itemform';
+import DataFacade from './DataFacade';
 
 import ItemTableWithFilter from './itemTableWithFilter'
 
@@ -12,15 +13,21 @@ class App extends Component {
 
     this.state = {
       loggedIn: false,
-      resultList: "no data to show"
+      resultList: "no data to show",
+      category: ""
     }
     this.handleClick = this.handleClick.bind(this);
 
   };
 
-  handleClick(event) {
-    event.preventDefault();
-    this.setState({ resultList: <ItemTableWithFilter /> })
+
+
+  handleClick(e) {
+    console.log(e.target.id);
+    this.setState({resultList: <Itemtable facade={DataFacade} category={e.target.id}  />});
+  
+  //We change the state value of the resultList. This prevents the whole page from being overwritten. 
+  //It only changes the table (resultList)
   }
 
   render() {
@@ -29,7 +36,7 @@ class App extends Component {
       <Router>
         <Switch>
         <Route path="/registerItem" render={() => <div><Itemform /></div> }/>
-
+        
 
           <div className="container-fluid">
             <h1>Lejeland</h1>
@@ -50,11 +57,11 @@ class App extends Component {
                           <ul>
 
                             <li><a href="">Cars</a></li>
-                            <li><a href="">Bikes</a></li>
-                            <li><a href="">Motorcycles</a></li>
-                            <li><a href="">Scooters</a></li>
-                            <li><a href="skating" onClick={this.handleClick}>Skating</a></li>
-                            <li><a href="">Boats</a></li>
+                            <li><button id='bikes' onClick={this.handleClick}>Bikes</button></li>
+                            <li><a href="motorcycles">Motorcycles</a></li>
+                            <li><a href="scooters">Scooters</a></li>
+                            <li><a href="skating">Skating</a></li>
+                            <li><a href="Boats">Boats</a></li>
                           </ul>
                         </div>
                       </li>
