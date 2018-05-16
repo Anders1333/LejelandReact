@@ -16,6 +16,6 @@
     "eject": "react-scripts eject"
   },
   "config": {
-    "url": "http://localhost:8084"
+    "url": "http://localhost:8084/lejelandBackend/data/api"
   }
 }

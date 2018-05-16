@@ -20,20 +20,27 @@ class Itemtable extends Component {
         
         this.head = this.head.bind(this);
         this.body = this.body.bind(this);
-        this.state = {q : null};
+        
     }
 
-   
-    
-    componentDidMount(){
-      
-        this.props.facade.fetchItemsFromCategory('Bikes')
-        .then(res=> {
-            this.setState({dataFromServer: res.results})})
-        .catch(err => console.log(err));
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.category !== this.props.category) {
+          this.setState({category: nextProps.category});
+        }
+      }
    
+    // Her er problemet, result er et promise og har derfor ingen værdi...
+    componentDidMount(){
+        console.log("itemtable class calls the Datafacade method")
+        this.props.facade.fetchItemsFromCategory(this.state.category)
+        .then(res=> {
+            console.log("Itemtable sets dataFromServer to be: "+res)
+            this.setState({dataFromServer: res})})
+        .catch(err => console.log(err));
         
+      
+   
     }
 
 

@@ -10,44 +10,32 @@ function handleHttpErrors(res) {
 }
 
 
-class DataFacade {
+class DataFacade extends Component {
 
 
       fetchItemsFromCategory(categoryName){
+        console.log("Dataface calls the fetch on : "+URL+"/items/category/"+categoryName)
         const options = this.makeFetchOptions("GET");
+        console.log("data from Datafacade is: " + fetch(URL+"/items/category/"+categoryName,options,true)
+        .then(handleHttpErrors));
         return fetch(URL+"/items/category/"+categoryName,options,true)
-        .then(handleHttpErrors)
-      }
-
-
-      fetchAllPersons = () => {
-        const options = this.makeFetchOptions("GET");
-        return fetch(URL+"/api/info/people",options,true)
-        .then(handleHttpErrors)
-      }
-      fetchAllPlanets = () => {
-        const options = this.makeFetchOptions("GET");
-        return fetch(URL+"/api/info/planets",options,true)
-        .then(handleHttpErrors)
+        .then(handleHttpErrors);
       }
 
 
 
-  
-
-
-  makeFetchOptions = (type, b) => {
-    let headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    }
-   
-    return {
-      method: type,
-      headers,
-      body: JSON.stringify(b)
-    }
-  }
+      makeFetchOptions = (type, b) => {
+        let headers = {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      
+        return {
+          method: type,
+          headers,
+          body: JSON.stringify(b)
+        }
+      }
 }
 const facade = new DataFacade();
 export default facade;

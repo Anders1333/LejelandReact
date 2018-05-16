@@ -12,23 +12,22 @@ class App extends Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
-      resultList: "no data to show",
+      resultList: [],
       category: ""
+      
     }
     this.handleClick = this.handleClick.bind(this);
 
-  };
+  }
 
 
 
   handleClick(e) {
-    console.log(e.target.id);
-    this.setState({resultList: <Itemtable facade={DataFacade} category={e.target.id}  />});
+    e.preventDefault()
+    this.setState({ resultList: <Itemtable facade={DataFacade} category={e.target.id}/>})
   
-  //We change the state value of the resultList. This prevents the whole page from being overwritten. 
-  //It only changes the table (resultList)
-  }
+  
+}
 
   render() {
     return (
@@ -56,12 +55,12 @@ class App extends Component {
                         <div id="transport-list" className="collapse">
                           <ul>
 
-                            <li><a href="">Cars</a></li>
-                            <li><button id='bikes' onClick={this.handleClick}>Bikes</button></li>
-                            <li><a href="motorcycles">Motorcycles</a></li>
-                            <li><a href="scooters">Scooters</a></li>
-                            <li><a href="skating">Skating</a></li>
-                            <li><a href="Boats">Boats</a></li>
+                            <li><a href="cars" id="cars" onClick={this.handleClick}>Cars</a></li>
+                            <li><a href="bikes" id="bikes" onClick={this.handleClick}>Bikes</a></li>
+                            <li><a href="motorcycles" id="motorcycles" onClick={this.handleClick}>Motorcycles</a></li>
+                            <li><a href="scooters" id="scooters" onClick={this.handleClick}>Scooters</a></li>
+                            <li><a href="skating" id="skating" onClick={this.handleClick}>Skating</a></li>
+                            <li><a href="Boats" id="boats" onClick={this.handleClick}>Boats</a></li>
                           </ul>
                         </div>
                       </li>
@@ -70,13 +69,13 @@ class App extends Component {
                         <button data-toggle="collapse" data-target="#living-list">Living</button>
                         <div id="living-list" className="collapse">
                           <ul>
-                            <li><a href="">Couches</a></li>
-                            <li><a href="">Tables</a></li>
-                            <li><a href="">Chairs</a></li>
-                            <li><a href="">Carpets</a></li>
-                            <li><a href="">Bathroom</a></li>
-                            <li><a href="">Bedroom</a></li>
-                            <li><a href="">For kids</a></li>
+                            <li><a href="couches" id="couches" onClick={this.handleClick}>Couches</a></li>
+                            <li><a href="tables" id="tables" onClick={this.handleClick}>Tables</a></li>
+                            <li><a href="chairs" id="chairs" onClick={this.handleClick}>Chairs</a></li>
+                            <li><a href="carpets" id="carpets" onClick={this.handleClick}>Carpets</a></li>
+                            <li><a href="bathroom" id="bathroom" onClick={this.handleClick}>Bathroom</a></li>
+                            <li><a href="bedroom" id="bedroom" onClick={this.handleClick}>Bedroom</a></li>
+                            <li><a href="kids" id="kids" onClick={this.handleClick}>For kids</a></li>
                           </ul>
                         </div>
                       </li>
@@ -86,13 +85,13 @@ class App extends Component {
                         <button data-toggle="collapse" data-target="#services-list">Services</button>
                         <div id="services-list" className="collapse">
                           <ul>
-                            <li><a href="">Driving</a></li>
-                            <li><a href="">Cooking</a></li>
-                            <li><a href="">Cleaning</a></li>
-                            <li><a href="">Gardening</a></li>
-                            <li><a href="">Babysitting</a></li>
-                            <li><a href="">Entertainment</a></li>
-                            <li><a href="">Misc</a></li>
+                            <li><a href="driving" id="driving" onClick={this.handleClick}>Driving</a></li>
+                            <li><a href="cooking" id="cooking" onClick={this.handleClick}>Cooking</a></li>
+                            <li><a href="cleaning" id="cleaning" onClick={this.handleClick}>Cleaning</a></li>
+                            <li><a href="gardening" id="gardening" onClick={this.handleClick}>Gardening</a></li>
+                            <li><a href="babysitting" id="babysitting" onClick={this.handleClick}>Babysitting</a></li>
+                            <li><a href="entertainment" id="entertainment" onClick={this.handleClick}>Entertainment</a></li>
+                            <li><a href="misc" id="misc" onClick={this.handleClick}>Misc</a></li>
                           </ul>
                         </div>
                       </li>
@@ -101,14 +100,14 @@ class App extends Component {
                         <button data-toggle="collapse" data-target="#electronics-list">Electronics</button>
                         <div id="electronics-list" className="collapse">
                           <ul>
-                            <li><a href="">Lamps</a></li>
-                            <li><a href="">Ovens</a></li>
-                            <li><a href="">Refrigerators</a></li>
-                            <li><a href="">TVs</a></li>
-                            <li><a href="">Soundsystems</a></li>
-                            <li><a href="">Toys</a></li>
-                            <li><a href="">Computers</a></li>
-                            <li><a href="">Consoles</a></li>
+                            <li><a href="lamps" id="lamps" onClick={this.handleClick}>Lamps</a></li>
+                            <li><a href="ovens" id="ovens" onClick={this.handleClick}>Ovens</a></li>
+                            <li><a href="refrigerators" id="refrigerators" onClick={this.handleClick}>Refrigerators</a></li>
+                            <li><a href="tvs" id="tvs" onClick={this.handleClick}>TVs</a></li>
+                            <li><a href="soundsystems" id="soundsystems" onClick={this.handleClick}>Soundsystems</a></li>
+                            <li><a href="toys" id="toys" onClick={this.handleClick}>Toys</a></li>
+                            <li><a href="computers" id="computers" onClick={this.handleClick}>Computers</a></li>
+                            <li><a href="consoles" id="consoles" onClick={this.handleClick}>Consoles</a></li>
                           </ul>
                         </div>
                       </li>
