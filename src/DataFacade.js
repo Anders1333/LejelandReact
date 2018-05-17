@@ -22,12 +22,22 @@ class DataFacade extends Component {
         .then(handleHttpErrors);
       }
 
+      createNewItem(item){
+        console.log("Datafacade calls the fetch on : "+URL+"/items/addItem")
+        const options = this.makeFetchOptions("POST",item);
+        return fetch(URL+"/items/addItem",options,true)
+        .then(res=>res.json())
+        .then(res=>console.log(res))
+        .then(handleHttpErrors);
+      }
+
 
 
       makeFetchOptions = (type, b) => {
         let headers = {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          
         }
       
         return {

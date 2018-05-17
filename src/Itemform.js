@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "react-router-dom";
+import Select from './Select';
+import DataFacade from './DataFacade'
 
 
 
 class Itemform extends Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' ,
+        this.state = { 
+                       userid: '1',
+                       title: '',
+                       description: '',
                        categoryChoice: '',
+                       description: '',
+                       payment: '',
+                       location: '',
+
                        options: [
                         { value: "Cars", label: 'Cars' },
                         { value: "Bikes", label: 'Bikes' },
@@ -43,29 +52,51 @@ class Itemform extends Component {
     
     }
         this.handleChange = this.handleChange.bind(this);
+        this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChange = this.handleChange.bind(this);
+    }
+
+    onChange(event){
+        const target = event.target;
+        const value = target.value;
+        
+        this.setState({
+            categoryChoice: value
+          });
+        console.log(this.state)
     }
 
    
-
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+    
+        this.setState({
+          [name]: value
+        });
+        console.log(this.state)
+      }
+      
+    
     
 
-
-
-
-    onChange(event) {
-        this.setState({ categoryChoice: event.value });
-
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
+   
 
     handleSubmit(event) {
+    event.preventDefault(event);
 
-        event.preventDefault();
+    const item = { 
+    userid: this.state.userid,
+    title: this.state.title,
+    category: this.state,
+    description: this.state.description,
+    payment: this.state.payment,
+    location: this.state.location
+    }
+
+    DataFacade.createNewItem(item);
+
     }
   
 
@@ -73,9 +104,13 @@ class Itemform extends Component {
 
     render() {
 
-        const categoryOptions = this.state.options.map((data,index) =>
-            <option value= {data.value}>{data.label}</option>
-            )
+        console.log("this is the title " + this.state.title)
+           
+
+
+        const optionsmapped = this.state.options.map((data,index)=> 
+        <option key = {index} value = {data.value}>{data.label}</option> 
+        )
             
         return (
             <div id= "registerItem">
@@ -87,7 +122,7 @@ class Itemform extends Component {
                     <li>
                     <label>
                         Title:
-                    <input type="text" value={this.state.title} onChange={this.handleChange} />
+                    <input name='title' type='text' value={this.state.title} onChange={this.handleChange}/>
                     </label>
                     </li>
 
@@ -95,35 +130,31 @@ class Itemform extends Component {
                     <li>
                     <label>
                         Category:
-                    
-                        <select onChange={this.onChange} value={this.state.categoryChoice}>
-                        {categoryOptions}
-                        </select>            
-
-                        
-                   
-                           
+                        <select name='categoryChoice' value= {this.state.categoryChoice} onChange={this.onChange}>
+                        <option value = '' selectedvalue = '1'>Choose Category</option>
+                        {optionsmapped}
+                        </select>
                     </label>
                     </li>
 
                     <li>
                      <label>
                         Description:
-                    <input type="text" value={this.state.description} onChange={this.handleChange} />
+                    <input name='description' type="text" value={this.state.description} onChange={this.handleChange} />
                     </label>
                     </li>
 
                     <li>
                      <label>
                         Payment:
-                    <input type="text" value={this.state.payment} onChange={this.handleChange} />
+                    <input name='payment' type="text" value={this.state.payment} onChange={this.handleChange} />
                     </label>
                     </li>
 
                     <li>
                      <label>
                         Location:
-                    <input type="text" value={this.state.location} onChange={this.handleChange} />
+                    <input name='location' type="text" value={this.state.location} onChange={this.handleChange} />
                     </label>
                     </li>
 

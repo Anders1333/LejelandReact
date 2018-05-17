@@ -13,7 +13,8 @@ class App extends Component {
 
     this.state = {
       resultList: [],
-      category: ""
+      category: 'bikes'
+      
       
     }
     this.handleClick = this.handleClick.bind(this);
@@ -23,10 +24,13 @@ class App extends Component {
 
 
   handleClick(e) {
+    
     e.preventDefault()
-    this.setState({ resultList: <Itemtable facade={DataFacade} category={e.target.id}/>})
-  
-  
+    const target = e.target;
+    const id = target.id;
+    this.setState({category: id})
+    console.log(this.state.category)
+    
 }
 
   render() {
@@ -34,7 +38,7 @@ class App extends Component {
 
       <Router>
         <Switch>
-        <Route path="/registerItem" render={() => <div><Itemform /></div> }/>
+        <Route path="/registerItem" render={() => <div><Itemform facade={DataFacade} /></div> }/>
         
 
           <div className="container-fluid">
@@ -117,7 +121,7 @@ class App extends Component {
               </div>
               <div className="col-sm-10">
 
-                <div>{this.state.resultList}</div>
+                <div><Itemtable facade={DataFacade} category={this.state.category}/></div>
                 
               </div>
             </div>

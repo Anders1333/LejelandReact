@@ -38,10 +38,8 @@ class Itemtable extends Component {
             console.log("Itemtable sets dataFromServer to be: "+res)
             this.setState({dataFromServer: res})})
         .catch(err => console.log(err));
-        
-      
-   
-    }
+        }
+    
 
 
     head() {
@@ -61,7 +59,7 @@ class Itemtable extends Component {
     }
 
     body() {
-        console.log(this.state.dataFromServer)
+       
         if(this.state.dataFromServer===undefined){
             return null;
         }
@@ -73,7 +71,7 @@ class Itemtable extends Component {
                     <td>{data.description}</td>
                     <td>{data.payment}</td>
                     <td>{data.location}</td>
-                    <td>{data.available}</td>
+                    <td>{data.status}</td>
                 </tr>
             )
         })
