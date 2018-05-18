@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-
-import {NavLink} from 'react-router-dom';
-
+import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "react-router-dom";
 
 
-class Itemtable extends Component {
+
+class UserItemTable extends Component {
 
     constructor(props) {
         super(props);
@@ -12,7 +11,7 @@ class Itemtable extends Component {
         this.state = {
             dataFromServer: [],
             facade: this.props.facade,
-            category: this.props.category
+            userId: this.props.userid
             }
 
             
@@ -24,37 +23,14 @@ class Itemtable extends Component {
     }
 
 
-
-    componentWillReceiveProps(nextProps){
-         this.setState({category: nextProps.category})
-    }
-    
+   
+  
     componentDidMount(){
-        if(this.state.category!==''){
-        console.log("category is : "+ this.state.category)
-        console.log("itemtable class calls the Datafacade method")
-        this.props.facade.fetchItemsFromCategory(this.state.category)
+       this.props.facade.fetchItemsFromUserId(this.state.userId)
         .then(res=> {
-            console.log("Itemtable sets dataFromServer to be: "+res)
-            this.setState({dataFromServer: res})})
-        .catch(err => console.log(err));
-        }else{
-        
-
-
-        this.props.facade.fetchAllItems()
-        .then(res=> {
-            console.log("Itemtable sets dataFromServer to be: "+res)
             this.setState({dataFromServer: res})})
         .catch(err => console.log(err));
         }
-
-    }
-        
-
-
-   
- 
     
 
 
@@ -102,11 +78,17 @@ class Itemtable extends Component {
 
 
     render() {
-
-        
-
-    
         return (
+           
+    
+            <div className="container-fluid">
+            <h1>Lejeland</h1>
+            <NavLink exact to="/">Home</NavLink>
+            <hr/>
+       
+            
+            
+            
             <div>
 
                 <table id="myTable" className="table">
@@ -115,9 +97,12 @@ class Itemtable extends Component {
                 </table>
 
             </div>
+            </div>
+           
+            
         )
     }
 }
 
 
-export default Itemtable;
+export default UserItemTable;

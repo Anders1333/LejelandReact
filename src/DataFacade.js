@@ -22,6 +22,22 @@ class DataFacade extends Component {
         .then(handleHttpErrors);
       }
 
+      fetchItemsFromUserId(id){
+        console.log("Dataface calls the fetch on : "+URL+"/users/"+id+"/items")        
+        const options = this.makeFetchOptions("GET");
+        console.log("data from Datafacade is: " + fetch(URL+"/users/"+id+"/items",options,true)
+        .then(handleHttpErrors));
+        return fetch(URL+"/users/"+id+"/items",options,true)
+        .then(handleHttpErrors);
+      
+      }
+
+      fetchAllItems(){
+        const options = this.makeFetchOptions("GET");
+        return fetch(URL+"/items",options,true)
+        .then(handleHttpErrors);
+      }
+
       createNewItem(item){
         console.log("Datafacade calls the fetch on : "+URL+"/items/addItem")
         const options = this.makeFetchOptions("POST",item);

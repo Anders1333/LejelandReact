@@ -3,8 +3,9 @@ import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "
 import Itemtable from './Itemtable';
 import Itemform from './Itemform';
 import DataFacade from './DataFacade';
-
+import UserItemTable from './UserItemTable';
 import ItemTableWithFilter from './itemTableWithFilter'
+import ReactDOM from 'react-dom';
 
 
 class App extends Component {
@@ -13,44 +14,54 @@ class App extends Component {
 
     this.state = {
       resultList: [],
-      category: 'bikes'
+      category: '',
+      userId: "1"
       
       
     }
     this.handleClick = this.handleClick.bind(this);
 
   }
-
+  
 
 
   handleClick(e) {
     
     e.preventDefault()
-    const target = e.target;
-    const id = target.id;
-    this.setState({category: id})
-    console.log(this.state.category)
+    console.log("You clicked: " + e.target.id)
+    var id = e.target.id;
+    var container = document.getElementById('container');
+    
+    ReactDOM.render(<Itemtable facade={DataFacade} category={id} />, container);
     
 }
 
   render() {
+    
     return (
+      
 
       <Router>
         <Switch>
-        <Route path="/registerItem" render={() => <div><Itemform facade={DataFacade} /></div> }/>
+      
+        <Route path="/registerItem" render={() => <div><Itemform facade={DataFacade} userid={this.state.userId} /></div> }/>
         
-
+        <Route path="/myItems" render={() => <div><UserItemTable facade={DataFacade} userid={this.state.userId} /></div> }/>
+        
           <div className="container-fluid">
             <h1>Lejeland</h1>
+            <div id= "navbar">
             <NavLink exact to="/registerItem">New item</NavLink>
+            <NavLink exact to="/myItems">My items</NavLink>
+            <NavLink exact to="/">Home</NavLink>
+            </div>
            
             <hr/>
             <div className="row">
               <div className="col-sm-2" id="categories">
                 <div>
-
-                  <button data-toggle="collapse" data-target="#demo">Categories</button>
+                  <button id = "" onClick = {this.handleClick}>All items</button>
+                  <button data-toggle="collapse" data-target="#demo">Categories v</button>
 
                   <div id="demo" className="collapse">
                     <ul>
@@ -121,7 +132,7 @@ class App extends Component {
               </div>
               <div className="col-sm-10">
 
-                <div><Itemtable facade={DataFacade} category={this.state.category}/></div>
+                <div id="container"></div>
                 
               </div>
             </div>

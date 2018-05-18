@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link, Switch, NavLink, WithRouter } from "react-router-dom";
-import Select from './Select';
+
 import DataFacade from './DataFacade'
 
 
@@ -9,7 +9,7 @@ class Itemform extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-                       userid: '1',
+                       userid: this.props.userid,
                        title: '',
                        description: '',
                        categoryChoice: '',
@@ -86,10 +86,11 @@ class Itemform extends Component {
     handleSubmit(event) {
     event.preventDefault(event);
 
-    const item = { 
-    userid: this.state.userid,
+    const item = {
+    itemId: 0, 
+    userId: this.state.userid,
     title: this.state.title,
-    category: this.state,
+    category: this.state.categoryChoice,
     description: this.state.description,
     payment: this.state.payment,
     location: this.state.location
@@ -113,6 +114,10 @@ class Itemform extends Component {
         )
             
         return (
+
+            <div>
+             <NavLink exact to="/">Home</NavLink>
+            
             <div id= "registerItem">
 
 
@@ -163,6 +168,7 @@ class Itemform extends Component {
                     </ul>
                 </form>
 
+            </div>
             </div>
 
         )
